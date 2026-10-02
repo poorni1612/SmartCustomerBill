@@ -34,7 +34,6 @@ function calculateDiscount(customerType, purchaseAmount) {
     return amounToBeDiscounted;
 }
 function calculateGST(taxableAmount) {
-    // Only return the tax itself, not the base amount + taxPoorni
     let Gst = taxableAmount * 0.18;
     return Gst;
 }
