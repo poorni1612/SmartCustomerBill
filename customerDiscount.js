@@ -1,3 +1,4 @@
+
 const readline = require('readline-sync');
 const customerName = readline.question("Enter Customer Name: ");
 let customerType = readline.question("Enter Customer Type: ");
@@ -33,8 +34,8 @@ function calculateDiscount() {
     amounToBeDiscounted = (purchaseAmount * discountRange) / 100;
     return amounToBeDiscounted;
 }
-function addGST(purchaseAmount) {
-    let addedGst = purchaseAmount * 0.18;
+function calculateGST(purchaseAmount) {
+    let addedGst = purchaseAmount+(purchaseAmount * 0.18);
     return addedGst;
 }
 function findTotalAmountPayable(purchaseAmount) {
@@ -48,7 +49,7 @@ switch (userchoice) {
 
 
     case 2:
-        console.log("Hi! " + customerName + " Your Amount after adding GST is" + addGST(purchaseAmount));
+        console.log("Hi! " + customerName + " Your Amount after adding GST is" + calculateGST(purchaseAmount));
         break;
 
 
