@@ -8,41 +8,37 @@ let discountRange;
 let amounToBeDiscounted ;
 
 function calculateDiscount() {
-
-    if (customerType == "Premium") {
-        if (purchaseAmount >= 5000 ) {
+    if (purchaseAmount == 0) {
+        console.log("You have not made any purchase yet!");
+        discountRange = 0;
+    }
+    else if (customerType == "Premium") {
+        if (purchaseAmount >= 5000) {
             discountRange = 20;
-        }
-        else if (purchaseAmount < 5000 ) {
+        } else {
             discountRange = 10;
-
         }
-        else if (purchaseAmount == 0) {
-            console.log("You have not made any purchase yet!")
-        }
-
     }
     else if (customerType == "Regular") {
-        if (purchaseAmount >= 5000 ) {
+        if (purchaseAmount >= 5000) {
             discountRange = 10;
-        }
-        else if (purchaseAmount < 5000 ) {
+        } else {
             discountRange = 5;
         }
-        else if (purchaseAmount == 0) {
-            console.log("You have not made any purchase yet!")
-        }
     }
-    
+    else {
+        discountRange = 0;   // unknown customer type: no discount
+    }
+
     amounToBeDiscounted = (purchaseAmount * discountRange) / 100;
     return amounToBeDiscounted;
 }
-function addGST() {
+function addGST(purchaseAmount) {
     let addedGst = purchaseAmount * 0.18;
     return addedGst;
 }
-function findTotalAmountPayable() {
-    let totalAmount = purchaseAmount - calculateDiscount() + addGST();
+function findTotalAmountPayable(purchaseAmount) {
+    let totalAmount = purchaseAmount - calculateDiscount() + addGST(purchaseAmount);
     return totalAmount;
 }
 switch (userchoice) {
@@ -52,12 +48,12 @@ switch (userchoice) {
 
 
     case 2:
-        console.log("Hi! " + customerName + " Your Amount after adding GST is" + addGST());
+        console.log("Hi! " + customerName + " Your Amount after adding GST is" + addGST(purchaseAmount));
         break;
 
 
     case 3:
-        console.log("Hi! " + customerName + " Your total payable Amount for today is " + findTotalAmountPayable());
+        console.log("Hi! " + customerName + " Your total purchase Amount for today is " + findTotalAmountPayable(purchaseAmount));
         break;
 
     case 4:
